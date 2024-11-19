@@ -42,8 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final con1 = FlipCardController();
   var result = '';
   var flipping = RotateSide.left;
-  var erroricon = const Icon(Icons.circle, color: Colors.white, size: 15,);
-
+  var erroricon = const Icon(Icons.circle, color: Colors.white, size: 15);
 
   @override
   Widget build(BuildContext context) {
@@ -82,16 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: [
                   const SizedBox(height: 28),
-                  Row(mainAxisAlignment: MainAxisAlignment.end,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
                         'BMI Calculator',
-                        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 22),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 22,
+                        ),
                       ),
-                      const SizedBox(width: 28,),
+                      const SizedBox(width: 28),
                       erroricon,
-                      const SizedBox(width: 20,),
+                      const SizedBox(width: 20),
                     ],
                   ),
                   const SizedBox(height: 29),
@@ -136,8 +139,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderSide: const BorderSide(width: 1),
                             ),
                             prefixIcon: const Padding(
-                              padding: EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 12),
-                              child: FaIcon(FontAwesomeIcons.weightScale, color: Colors.black, size: 22,),
+                              padding: EdgeInsets.only(
+                                left: 12,
+                                right: 12,
+                                top: 12,
+                                bottom: 12,
+                              ),
+                              child: FaIcon(
+                                FontAwesomeIcons.weightScale,
+                                color: Colors.black,
+                                size: 22,
+                              ),
                             ),
                             suffixIcon: const Padding(
                               padding: EdgeInsets.only(
@@ -184,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             const Padding(
                               padding: EdgeInsets.all(9.0),
-                              child: Icon(Icons.height, size: 26,),
+                              child: Icon(Icons.height, size: 26),
                             ),
                             Expanded(
                               child: Padding(
@@ -204,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   textAlign: TextAlign.end,
                                   decoration: const InputDecoration(
                                     hintText: '5',
-                                    hintStyle: TextStyle(color: Colors.black26,),
+                                    hintStyle: TextStyle(color: Colors.black26),
                                     border: InputBorder.none,
                                     // contentPadding: EdgeInsets.symmetric(vertical: 16),
                                     suffixIcon: Padding(
@@ -293,27 +305,38 @@ class _MyHomePageState extends State<MyHomePage> {
                             var wt = wtcontroller.text.toString();
                             var ft = htcontrollerft.text.toString();
                             var inch = htcontrollerin.text.toString();
+                            var iwt = int.parse(wt);
+                            var ift = int.parse(ft);
+                            var iinch = int.parse(inch);
 
-                            if (wt != '' && ft != '' && inch != '') {
-                              var iwt = int.parse(wt);
-                              var ift = int.parse(ft);
-                              var iinch = int.parse(inch);
-
+                            if (wt != '' &&
+                                ft != '' &&
+                                inch != '' &&
+                                0 < iwt &&
+                                iwt < 1000 &&
+                                0 < ift &&
+                                ift < 20 &&
+                                0 < iinch) {
                               var theight = (ift * 0.3048) + (iinch * 0.0254);
-                              var bmi = iwt / (theight*theight);
+                              var bmi = iwt / (theight * theight);
                               result = bmi.toStringAsFixed(2);
                               flipping = RotateSide.left;
                               setState(() {});
                               con1.flipcard();
                             } else {
-                              erroricon = const Icon(Icons.circle, color: Colors.red, size: 15,);
-                              setState(() {
-                              });
-                              Future.delayed(const Duration(seconds: 2),(){
-                                erroricon = const Icon(Icons.circle, color: Colors.white, size: 15,);
-                                setState(() {
-
-                                });
+                              erroricon = const Icon(
+                                Icons.circle,
+                                color: Colors.red,
+                                size: 15,
+                              );
+                              setState(() {});
+                              Future.delayed(const Duration(seconds: 2), () {
+                                erroricon = const Icon(
+                                  Icons.circle,
+                                  color: Colors.white,
+                                  size: 15,
+                                );
+                                setState(() {});
                               });
                             }
                           },
@@ -372,13 +395,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         height: 50,
                         width: 260,
-                        child: TextField(enabled: false,
+                        child: TextField(
+                          enabled: false,
                           onTapOutside:
                               (event) =>
                                   FocusManager.instance.primaryFocus?.unfocus(),
                           keyboardType: TextInputType.number,
                           style: const TextStyle(
-
                             fontSize: 15,
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
@@ -405,37 +428,49 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             prefixIcon: const Padding(
                               padding: EdgeInsets.all(16.0),
-                              child: FaIcon(FontAwesomeIcons.equals, color: Colors.black,size: 15,),
+                              child: FaIcon(
+                                FontAwesomeIcons.equals,
+                                color: Colors.black,
+                                size: 15,
+                              ),
                             ),
                             suffixIcon: Padding(
                               padding: const EdgeInsets.only(
                                 top: 16,
                                 bottom: 16,
-                                right: 115,
+                                right: 110,
                               ),
                               child: RichText(
-                                  text: TextSpan(
-                                      style: const TextStyle( fontSize: 14, color: Colors.black, fontWeight: FontWeight.w500),
-                                      children: [
-                                        const TextSpan(
-                                        text: 'kg/m',
-                                        ),
-                                        WidgetSpan(
-                                          child: Transform.translate(
-                                            offset: const Offset(0.0, -6.0),
-                                            child: const Text(
-                                              '2',
-                                              style: TextStyle( fontSize: 10, color: Colors.black, fontWeight: FontWeight.w500),
-                                          ),
-                                        ),                                     ) ]
+                                text: TextSpan(
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                            ),
+                                  children: [
+                                    const TextSpan(text: 'kg/m'),
+                                    WidgetSpan(
+                                      child: Transform.translate(
+                                        offset: const Offset(0.0, -6.0),
+                                        child: const Text(
+                                          '2',
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
 
-                            // suffixStyle: TextStyle(color: Colors.black),
+                              // suffixStyle: TextStyle(color: Colors.black),
+                            ),
                           ),
                         ),
                       ),
-                      )
                     ],
                   ),
                   const SizedBox(height: 18.5),
