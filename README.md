@@ -1,5 +1,4 @@
-# bmi_calculator
-
+# bmi_calculator with clean ui
 SImple BMI calculator
 
 ## Getting Started
