@@ -218,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     hintText: '5',
                                     hintStyle: TextStyle(color: Colors.black26),
                                     border: InputBorder.none,
-                                    // contentPadding: EdgeInsets.symmetric(vertical: 16),
+                                    contentPadding: EdgeInsets.symmetric(vertical: 9),
                                     suffixIcon: Padding(
                                       padding: EdgeInsets.only(
                                         right: 8,
@@ -267,7 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     hintText: '10',
                                     hintStyle: TextStyle(color: Colors.black26),
                                     border: InputBorder.none,
-                                    // contentPadding: EdgeInsets.symmetric(vertical: 16),
+                                    contentPadding: EdgeInsets.symmetric(vertical: 9),
                                     suffixIcon: Padding(
                                       padding: EdgeInsets.only(
                                         right: 8,
